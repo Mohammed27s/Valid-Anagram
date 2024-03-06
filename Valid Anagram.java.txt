@@ -3,53 +3,49 @@
 
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
+
 public class ValidAnagram {
 
    public static Scanner in = new Scanner(System.in);
 
-    public static void main(String[] args){
+            public static void main(String[] args) {
+
+            System.out.println("Figure out if one word or phrase can be rearranged to make the other"+"\n");
+
+                System.out.println(isAnagram("anagram", "nagaram"));
+
+                System.out.println(isAnagram("rat", "car"));
+
+                System.out.println(isAnagram("Listen", "Silent"));
+
+                System.out.println(isAnagram("Hello", "hello"));
+            }
+
+            public static boolean isAnagram(String s, String t) {
+
+                s = s.replaceAll(" ", "").toLowerCase();
+
+                t = t.replaceAll(" ", "").toLowerCase();
+
+                Map<Character, Integer> realWordS = new HashMap<>();
+                Map<Character, Integer> notRealWordT = new HashMap<>();
+
+                for (char ch : s.toCharArray()) {
+                    realWordS.put(ch, realWordS.getOrDefault(ch, 0) + 1);
+                }
+
+                for (char ch : t.toCharArray()) {
+                    notRealWordT.put(ch, notRealWordT.getOrDefault(ch, 0) + 1);
+                }
+
+                return realWordS.equals(notRealWordT);
+            }
 
 
-        System.out.println("Figure out if one word or phrase can be rearranged to make the other");
-
-
-        String s;
-        String t;
-
-        HashSet<String> realWord = new HashSet<>();
-        HashSet<String> notRealWord = new HashSet<>();
-
-        realWord.add("anagram");
-        notRealWord.add("nagaram");
-
-        s = String.valueOf(realWord.stream().findFirst());
-        t = String.valueOf(notRealWord.stream().findFirst());
-
-        if(s.equals(t)){
-
-            Boolean firstWordCheck = s.equals(t);
-            System.out.println("This is: "+firstWordCheck);
         }
-        else {
-
-            System.out.println("There is no matching between the two words ");
-        }
 
 
 
 
-
-
-
-
-
-
-    }
-
-
-
-
-}
